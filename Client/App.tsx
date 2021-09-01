@@ -2,13 +2,10 @@ import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useFonts } from 'expo-font'
+//font family
+import FontFaminly from './constants/FontFamily'
 export default function App() {
-  const [loaded] = useFonts({
-    'Metropolis-regular': require('./assets/FontFamily/Metropolis-Regular.ttf'),
-    'Metropolis-bold': require('./assets/FontFamily/Metropolis-Bold.ttf'),
-    'Metropolis-semi-bold': require('./assets/FontFamily/Metropolis-SemiBold.ttf'),
-    'Metropolis-medium': require('./assets/FontFamily/Metropolis-Medium.ttf')
-  })
+  const [loaded] = useFonts(FontFaminly)
   if (!loaded) {
     return null
   }
