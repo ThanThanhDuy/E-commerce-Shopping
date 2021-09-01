@@ -2,10 +2,14 @@ import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useFonts } from 'expo-font'
-//font family
-import FontFaminly from './constants/FontFamily'
+//font
+import FontFamily from './constants/FontFamily'
+import FontSize from './styles/fonts/FontSize'
+
 export default function App() {
-  const [loaded] = useFonts(FontFaminly)
+  //load font
+  const [loaded] = useFonts(FontFamily)
+
   if (!loaded) {
     return null
   }
@@ -24,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontFamily: 'Metropolis-semi-bold'
+    fontFamily: 'Metropolis-semi-bold',
+    fontSize: FontSize.$Headline
   }
 })
