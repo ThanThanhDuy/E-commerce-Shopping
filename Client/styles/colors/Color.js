@@ -8,8 +8,8 @@ const Color = {
   $PrimaryLight: '#DB3022',
 
   $BackgroundDark: '#1E1F28',
-  $BackgroundLight: 'red',
-  // $BackgroundLight: '#F9F9F9',
+  // $BackgroundLight: 'red',
+  $BackgroundLight: '#F9F9F9',
 
   $WhiteDark: '#F6F6F6',
   $WhiteLight: '#FFFFFF',
