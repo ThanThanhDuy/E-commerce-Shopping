@@ -1,34 +1,28 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useFonts } from 'expo-font'
+import Color from './styles/colors/Color'
 //font
-import FontFamily from './constants/FontFamily'
 import FontSize from './styles/fonts/FontSize'
+import SignUpScreen from './screens/Sign Up/index'
 
 export default function App() {
   //load font
-  const [loaded] = useFonts(FontFamily)
-
-  if (!loaded) {
-    return null
-  }
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello</Text>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+      <SignUpScreen />
     </View>
-  )
+  );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:  Color.$BackgroundDark,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
-    fontFamily: 'Metropolis-semi-bold',
     fontSize: FontSize.$Headline
   }
 })
