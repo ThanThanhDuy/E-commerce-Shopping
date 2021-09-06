@@ -1,30 +1,38 @@
-import React, { useState } from "react";
-import { View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
+import { AntDesign, Ionicons } from '@expo/vector-icons'
+import React, { useState } from 'react'
 import {
-  Button,
-  Headline,
-  Subheading,
-  TextInput,
-} from "react-native-paper";
-import constants from "../../constants";
-import Color from "../../styles/colors/Color";
-import styles from "./style";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import checkString from "../../utils";
-const LoginScreen: React.FC = ({}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  Keyboard,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View
+} from 'react-native'
+import { Button, Headline, Subheading, TextInput } from 'react-native-paper'
+import constants from '../../constants'
+import Color from '../../styles/colors/Color'
+import checkString from '../../utils'
+import styles from './style'
+
+interface LoginScreenProps {
+  navigation: any
+}
+
+const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   //handle sign up
   const handleLogin = () => {
-    console.log("handle sign up");
-  };
-  
+    console.log('handle sign up')
+    navigation.navigate('Auth')
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <View>
-          <TouchableOpacity>
-            <View>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <View style={{ height: 44 }}>
               <Ionicons name="chevron-back" size={24} color="#F6F6F6" />
             </View>
           </TouchableOpacity>
@@ -34,9 +42,10 @@ const LoginScreen: React.FC = ({}) => {
           <View style={styles.body_container}>
             <TextInput
               style={styles.Input}
-              onChangeText={(email) => setEmail(email)}
+              onChangeText={email => setEmail(email)}
               label="Email"
               value={email}
+              keyboardType="email-address"
               right={
                 checkString(
                   email,
@@ -53,7 +62,7 @@ const LoginScreen: React.FC = ({}) => {
             <TextInput
               style={styles.Input}
               label="Password"
-              onChangeText={(password) => setPassword(password)}
+              onChangeText={password => setPassword(password)}
               right={
                 checkString(password, constants.MAX_PASSWORD) ? (
                   <TextInput.Icon color="green" name="check" />
@@ -68,10 +77,10 @@ const LoginScreen: React.FC = ({}) => {
               <View>
                 <Text
                   style={{
-                    textAlign: "right",
+                    textAlign: 'right',
                     marginVertical: 10,
-                    color: "#F6F6F6",
-                    fontFamily: "Poppins-medium",
+                    color: '#F6F6F6',
+                    fontFamily: 'Poppins-medium'
                   }}
                 >
                   Forgot your password?
@@ -99,14 +108,14 @@ const LoginScreen: React.FC = ({}) => {
               mode="contained"
               theme={{
                 colors: {
-                  placeholder: "white",
-                  text: "white",
+                  placeholder: 'white',
+                  text: 'white',
                   primary: Color.$Dark,
-                  background: "#003489",
-                },
+                  background: '#003489'
+                }
               }}
             >
-              <Text style={{ fontFamily: "Poppins-medium" }}>LOGIN</Text>
+              <Text style={{ fontFamily: 'Poppins-medium' }}>LOGIN</Text>
             </Button>
           </View>
         </View>
@@ -115,6 +124,6 @@ const LoginScreen: React.FC = ({}) => {
         </Subheading>
       </View>
     </TouchableWithoutFeedback>
-  );
-};
-export default LoginScreen;
+  )
+}
+export default LoginScreen

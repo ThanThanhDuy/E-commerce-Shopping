@@ -1,31 +1,30 @@
-import React, { useState } from "react";
+import { AntDesign } from '@expo/vector-icons'
+import React, { useState } from 'react'
 import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
   Keyboard,
+  Text,
   TouchableOpacity,
-} from "react-native";
-import {
-  Button,
-  Headline,
-  HelperText,
-  Subheading,
-  TextInput,
-} from "react-native-paper";
-import constants from "../../constants";
-import Color from "../../styles/colors/Color";
-import styles from "./style";
-import { AntDesign } from "@expo/vector-icons";
-import checkString from "../../utils";
-const SignUpScreen: React.FC = ({}) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  TouchableWithoutFeedback,
+  View
+} from 'react-native'
+import { Button, Headline, Subheading, TextInput } from 'react-native-paper'
+import constants from '../../constants'
+import Color from '../../styles/colors/Color'
+import checkString from '../../utils'
+import styles from './style'
+
+interface signUpScreenProps {
+  navigation: any
+}
+
+const SignUpScreen: React.FC<signUpScreenProps> = ({ navigation }) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   //handle sign up
   const handleSignUp = () => {
-    console.log("handle sign up");
-  };
+    console.log('handle sign up')
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -38,7 +37,8 @@ const SignUpScreen: React.FC = ({}) => {
             <TextInput
               style={styles.Input}
               label="Name"
-              onChangeText={(name) => setName(name)}
+              keyboardType="email-address"
+              onChangeText={name => setName(name)}
               right={
                 checkString(name, constants.MAX_NAME) ? (
                   <TextInput.Icon color="green" name="check" />
@@ -50,7 +50,7 @@ const SignUpScreen: React.FC = ({}) => {
             />
             <TextInput
               style={styles.Input}
-              onChangeText={(email) => setEmail(email)}
+              onChangeText={email => setEmail(email)}
               label="Email"
               value={email}
               right={
@@ -69,7 +69,7 @@ const SignUpScreen: React.FC = ({}) => {
             <TextInput
               style={styles.Input}
               label="Password"
-              onChangeText={(password) => setPassword(password)}
+              onChangeText={password => setPassword(password)}
               right={
                 checkString(password, constants.MAX_PASSWORD) ? (
                   <TextInput.Icon color="green" name="check" />
@@ -80,13 +80,13 @@ const SignUpScreen: React.FC = ({}) => {
               secureTextEntry={true}
               theme={constants.themeInput}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
               <Text
                 style={{
-                  textAlign: "right",
+                  textAlign: 'right',
                   marginVertical: 10,
-                  color: "#F6F6F6",
-                  fontFamily: "Poppins-medium",
+                  color: '#F6F6F6',
+                  fontFamily: 'Poppins-medium'
                 }}
               >
                 Already have an account?
@@ -114,14 +114,14 @@ const SignUpScreen: React.FC = ({}) => {
               mode="contained"
               theme={{
                 colors: {
-                  placeholder: "white",
-                  text: "white",
+                  placeholder: 'white',
+                  text: 'white',
                   primary: Color.$Dark,
-                  background: "#003489",
-                },
+                  background: '#003489'
+                }
               }}
             >
-              <Text style={{ fontFamily: "Poppins-medium" }}>SIGN UP</Text>
+              <Text style={{ fontFamily: 'Poppins-medium' }}>SIGN UP</Text>
             </Button>
           </View>
         </View>
@@ -130,6 +130,6 @@ const SignUpScreen: React.FC = ({}) => {
         </Subheading>
       </View>
     </TouchableWithoutFeedback>
-  );
-};
-export default SignUpScreen;
+  )
+}
+export default SignUpScreen

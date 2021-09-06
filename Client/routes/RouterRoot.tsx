@@ -8,8 +8,6 @@ import NotAuth from './notAuth/NotAuth'
 const Root = createNativeStackNavigator()
 
 const RouterRoot = () => {
-  const render = true
-
   return (
     <NavigationContainer>
       <Root.Navigator
@@ -18,20 +16,16 @@ const RouterRoot = () => {
         }}
         initialRouteName="NotAuth"
       >
-        {!render && (
-          <Root.Screen
-            name="NotAuth"
-            component={NotAuth}
-            options={{ gestureEnabled: false }}
-          />
-        )}
-        {render && (
-          <Root.Screen
-            name="Auth"
-            component={Auth}
-            options={{ gestureEnabled: false }}
-          />
-        )}
+        <Root.Screen
+          name="NotAuth"
+          component={NotAuth}
+          options={{ gestureEnabled: false }}
+        />
+        <Root.Screen
+          name="Auth"
+          component={Auth}
+          options={{ gestureEnabled: false }}
+        />
       </Root.Navigator>
     </NavigationContainer>
   )
