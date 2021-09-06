@@ -4,7 +4,9 @@ import FontSize from '../../styles/fonts/FontSize'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 44
+    paddingTop: 44,
+    backgroundColor: Color.$BackgroundDark,
+    alignItems: 'center'
   },
   Input: {
     backgroundColor: Color.$Dark,

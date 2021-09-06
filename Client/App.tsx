@@ -7,7 +7,8 @@ import { useFonts } from 'expo-font'
 import FontSize from './styles/fonts/FontSize'
 import FontFamily from './styles/fonts/FontFamily'
 
-import SignUpScreen from './screens/Sign Up/index'
+import RouterRoot from './routes/RouterRoot'
+import { RecoilRoot } from 'recoil'
 
 export default function App() {
   //load font
@@ -18,18 +19,18 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      <SignUpScreen />
-    </View>
+    <RecoilRoot>
+      <View style={styles.container}>
+        <RouterRoot />
+        <StatusBar style="light" />
+      </View>
+    </RecoilRoot>
   )
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Color.$BackgroundDark,
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: Color.$BackgroundDark
   },
   text: {
     fontSize: FontSize.$Headline
