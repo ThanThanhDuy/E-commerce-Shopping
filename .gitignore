@@ -1,2 +1,4 @@
 .history
 node-modules/
+yarn-lock.json
+*.log

@@ -1,53 +1,37 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Keyboard,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
 import {
   Button,
   Headline,
-  HelperText,
   Subheading,
   TextInput,
 } from "react-native-paper";
 import constants from "../../constants";
 import Color from "../../styles/colors/Color";
 import styles from "./style";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import checkString from "../../utils";
-const SignUpScreen: React.FC = ({}) => {
-  const [name, setName] = useState("");
+const LoginScreen: React.FC = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //handle sign up
-  const handleSignUp = () => {
+  const handleLogin = () => {
     console.log("handle sign up");
   };
-
+  
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <View>
+          <TouchableOpacity>
+            <View>
+              <Ionicons name="chevron-back" size={24} color="#F6F6F6" />
+            </View>
+          </TouchableOpacity>
           <View>
-            <Headline style={styles.header}>Sign Up</Headline>
+            <Headline style={styles.header}>Login</Headline>
           </View>
           <View style={styles.body_container}>
-            <TextInput
-              style={styles.Input}
-              label="Name"
-              onChangeText={(name) => setName(name)}
-              right={
-                checkString(name, constants.MAX_NAME) ? (
-                  <TextInput.Icon color="green" name="check" />
-                ) : (
-                  <View />
-                )
-              }
-              theme={constants.themeInput}
-            />
             <TextInput
               style={styles.Input}
               onChangeText={(email) => setEmail(email)}
@@ -81,22 +65,25 @@ const SignUpScreen: React.FC = ({}) => {
               theme={constants.themeInput}
             />
             <TouchableOpacity>
-              <Text
-                style={{
-                  textAlign: "right",
-                  marginVertical: 10,
-                  color: "#F6F6F6",
-                  fontFamily: "Poppins-medium",
-                }}
-              >
-                Already have an account?
-                <AntDesign
-                  name="arrowright"
-                  size={16}
-                  color={Color.$PrimaryDark}
-                />
-              </Text>
+              <View>
+                <Text
+                  style={{
+                    textAlign: "right",
+                    marginVertical: 10,
+                    color: "#F6F6F6",
+                    fontFamily: "Poppins-medium",
+                  }}
+                >
+                  Forgot your password?
+                  <AntDesign
+                    name="arrowright"
+                    size={16}
+                    color={Color.$PrimaryDark}
+                  />
+                </Text>
+              </View>
             </TouchableOpacity>
+
             <Button
               style={styles.Button}
               disabled={
@@ -104,13 +91,11 @@ const SignUpScreen: React.FC = ({}) => {
                   email,
                   constants.MAX_EMAIL,
                   constants.REGEX_EMAIL
-                ) &&
-                checkString(password, constants.MAX_PASSWORD) &&
-                checkString(name, constants.MAX_NAME)
+                ) && checkString(password, constants.MAX_PASSWORD)
                   ? false
                   : true
               }
-              onPress={handleSignUp}
+              onPress={handleLogin}
               mode="contained"
               theme={{
                 colors: {
@@ -121,7 +106,7 @@ const SignUpScreen: React.FC = ({}) => {
                 },
               }}
             >
-              <Text style={{ fontFamily: "Poppins-medium" }}>SIGN UP</Text>
+              <Text style={{ fontFamily: "Poppins-medium" }}>LOGIN</Text>
             </Button>
           </View>
         </View>
@@ -132,4 +117,4 @@ const SignUpScreen: React.FC = ({}) => {
     </TouchableWithoutFeedback>
   );
 };
-export default SignUpScreen;
+export default LoginScreen;
